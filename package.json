@@ -1,0 +1,25 @@
+{
+  "name": "genesys-lycanthrope-log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dazeCodes/genesys-lycanthrope-log.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dazeCodes/genesys-lycanthrope-log/issues"
+  },
+  "homepage": "https://github.com/dazeCodes/genesys-lycanthrope-log#readme"
+}

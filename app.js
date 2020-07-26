@@ -1,5 +1,5 @@
 // Name: Ani Frankpeter Ikechukwu 
-// This is my code
+
 const prompt = require('prompt-sync')({sigint: true});
 
 let Lycan = function(){

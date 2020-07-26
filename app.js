@@ -1,40 +1,15 @@
-// Name Ani Frankpeter Ikechukwu
-
+// Name: Ani Frankpeter Ikechukwu 
+// This is my code
+const prompt = require('prompt-sync')({sigint: true});
 
 let Lycan = function(){
     //private static attribute
      const activityMap = [
-        {'eating': 3.33},
-        {'dancing': 3.33},
-        {'walking': 3.33},
-        {'pizza': 3.33},
-        {'shawarma': 3.33},
-        {'rice': 3.33},
-        {'beans': 3.33},
-        {'honeybeans': 3.33},
-        {'strawberry': 3.33},
-        {'mango': 3.33},
-        {'Watermellon': 3.33},
-        {'cucumber': 3.33},
-        {'pineapple': 3.33},
-        {'apple': 3.33},
-        {'eba': 3.33},
-        {'cocktail': 3.33},
-        {'chicken': 3.33},
-        {'fish': 3.33},
-        {'stew': 3.33},
-        {'akidi': 3.33},
-        {'banga': 3.33},
-        {'ewo': 3.33},
-        {'egusi': 3.33},
-        {'afang': 3.33},
-        {'vegetable': 3.33},
-        {'leaf': 3.33},
-        {'pepper': 3.33},
-        {'tomatoe': 3.33},
-        {'sauce': 3.33},
-        {'sardin': 3.33},
-
+        {'fighting': 3},
+        {'crossbreeding': 3},
+        {'mating': 7},
+        {'growling': 4},
+        {'sleeping': 5},
     ]
 
     let dailyActivity = []
@@ -45,7 +20,10 @@ let Lycan = function(){
 
         //instance methods 
         this.showActivityMap = ()=>{
-            return activityMap
+            const result =  activityMap.map(act => {
+                return Object.keys(act)
+            })
+            return result
         }
 
         this.addActivity = (activity)=>{
@@ -55,8 +33,8 @@ let Lycan = function(){
             })
             if(validAct.length > 0){
                 dailyActivity.push(activity)
-                //check if it's a wereLycan yet 
-                this.isWereLycan()
+                //check if it's a Lycanthrope yet 
+                this.isLycanthrope()
             }else{
                 throw new Error(`${activity} is Not a valid activity`)
             }
@@ -75,15 +53,15 @@ let Lycan = function(){
                     }
                 })
             })
-            return totalScore
+            return Math.ceil(totalScore)
         }
         
-        this.isWereLycan = () => {
+        this.isLycanthrope = () => {
             const totalScore = this.totalActivityScore();
-            if(totalScore < 50){
-                return ("Not yet a were Lycan");
+            if(totalScore < 70){
+                return ("didn't turn to a  Lycan :(");
             }else{
-                return ("Turned to a Lycan")
+                return ("turned to a Lycan :)")
             }
         }
     }
@@ -91,13 +69,23 @@ let Lycan = function(){
     
 }
 let newLycan = new Lycan()
-const waar = new newLycan('kelvin');
-try{
-    
-console.log(waar.addActivity('sauce'))
-console.log(waar.addActivity('sardin'))
-console.log(waar.showCurrentActivity())
-console.log(waar.totalActivityScore())
-}catch(err){
-    console.log('::Error: ', err.message)
+const LycanName = prompt("Please enter your Lycan's identifier: ");
+const yourLycan = new newLycan(`${LycanName}`)
+prompt(`::In the next prompt please manually input the different things your Lycan did during the day up until 2 weeks. Your Lycan can perform some of the following: 
+${yourLycan.showActivityMap()}. Press Enter to continue the program`)
+function get14DaysAction(){
+    for(let i = 1; i < 15; i ++){
+        try{
+            const LycanAction = prompt(`What did ${LycanName} do on day ${i}? `)
+            yourLycan.addActivity(LycanAction);
+        }catch(err){
+            console.log(`::An error occurred: ${err.message}`)
+            const LycanAction = prompt(`What did ${LycanName} do on day ${i}? `)
+            yourLycan.addActivity(LycanAction);
+        }
+    }
 }
+get14DaysAction()
+prompt(`::We are all itching to know if ${LycanName} turned, let's find out in a second `)
+console.log(`${LycanName} ${yourLycan.isLycanthrope()}`)
+console.log(`${LycanName}'s score was ${yourLycan.totalActivityScore()}`)
